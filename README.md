@@ -11,4 +11,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - https://localhost:4200/users/[id] -> Show Detail User, List of Post by user and List of Album by user
 - https://localhost:4200/posts/[id] -> Show Detail Post And List of Comment
 - https://localhost:4200/albums/[id] -> Show Detail Album and List of Photo
-
+- https://localhost:4200/photos[id] -> Show Detail of Photo
