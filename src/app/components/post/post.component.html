@@ -1,0 +1,180 @@
+<section class="d-flex flex-column my-3">
+    <div class="card mb-3 shadow-sm" style="max-width: 850px;">
+        <div class="card-header p-3 d-flex justify-content-between">
+            <h3>Post</h3>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPost">
+                <i class="bi bi-pencil-square">Edit</i>
+            </button>
+            <div class="modal fade" id="editPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="" (submit)="editPost($event,post.id)">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Post</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <label for="postUpdateTitle" class="col-sm-2 col-form-label">Title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="postUpdateTitle"
+                                            name="postUpdateTitle">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="postUpdateBody" class="col-sm-2 col-form-label">Body</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" style="height: 100px" class="form-control"
+                                            id="postUpdateBody" name="postUpdateBody"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-auto">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <ul>
+                        <li>Id : {{ post.id }}</li>
+                        <li>UserId : {{ post.userId }}</li>
+                        <li>Body : {{ post.body }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="d-flex flex-column my-3">
+    <div class="card">
+        <div class="card-header p-3 d-flex justify-content-between">
+            <h3>Comment</h3>
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createComment">
+                <i class="bi bi-pencil-square btn">Create</i>
+            </button>
+
+            <div class="modal fade" id="createComment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="" (submit)="createComment($event)">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Post</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <label for="commentCreateName" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="commentCreateName"
+                                            name="commentCreateName">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="commentCreateEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="commentCreateEmail"
+                                            name="commentCreateEmail">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="commentCreateBody" class="col-sm-2 col-form-label">Body</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" style="height: 100px" class="form-control"
+                                            id="commentCreateBody" name="commentCreateBody"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table shadow-sm border">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comment of comments;let i=index">
+                        <th scope="row">{{ i+1 }}</th>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.name }}</td>
+                        <td>{{ comment.email }}</td>
+                        <td>{{ comment.body }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                data-bs-target="#editComment">
+                                <i class="bi bi-pencil-square">Edit</i>
+                            </button>
+                            <div class="modal fade" id="editComment" data-bs-backdrop="static" data-bs-keyboard="false"
+                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="" (submit)="editComment($event,comment.id)">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Post</h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row mb-3">
+                                                    <label for="commentUpdateName"
+                                                        class="col-sm-2 col-form-label">Name</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="commentUpdateName"
+                                                            name="commentUpdateName">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="commentUpdateEmail"
+                                                        class="col-sm-2 col-form-label">Email</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="email" class="form-control" id="commentUpdateEmail"
+                                                            name="commentUpdateEmail">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="commentUpdateBody"
+                                                        class="col-sm-2 col-form-label">Body</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea type="text" style="height: 100px" class="form-control"
+                                                            id="commentUpdateBody" name="commentUpdateBody"> </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="reset" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Kirim</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger" (click)="deleteComment(comment.id)">
+                                <i class="bi bi-trash"> Delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,32 @@
+<section class="d-flex flex-column my-5">
+    <div class="card shadow-sm">
+        <h1 class="card-header p-3">All User</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users;let i=index">
+                        <th scope="row">{{ i }}</th>
+                        <td>{{ user.id }}</td>
+                        <td><a [href]="'users/'+user.id">{{ user.name }}</a></td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.website }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

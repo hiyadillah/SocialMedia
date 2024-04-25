@@ -1,0 +1,170 @@
+<section class="d-flex flex-column justify-content-">
+    <div class="card my-3" style="max-width: 850px;">
+        <h3 class="card-header p-3">User</h3>
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="assets/blank-profile.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <ul>
+                        <li>Id : {{ user.id }}</li>
+                        <li>Name : {{ user.name }}</li>
+                        <li>Email : {{ user.email }}</li>
+                        <li>Phone : {{ user.phone }}</li>
+                        <li>Address : {{ user.address | address }}</li>
+                        <li>Company : <br>
+                            <ul>Name: {{ user.company.name }}</ul>
+                            <ul>Catch Phrase: {{ user.company.catchPhrase }}</ul>
+                            <ul>BS: {{ user.company.bs }}</ul>
+                        </li>
+                    </ul>
+                    <p class="card-text">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="d-flex flex-column ">
+    <div class="card shadow-sm">
+        <div class="card-header p-3 d-flex justify-content-between">
+            <h3>Post Made By {{ user.username }}</h3>
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createPost">
+                <i class="bi bi-pencil-square btn">Create</i>
+            </button>
+
+            <div class="modal fade" id="createPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="" (submit)="createPost($event)">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Post</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <label for="postCreateTitle" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="postCreateTitle"
+                                            name="postCreateTitle">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="postCreateBody" class="col-sm-2 col-form-label">Body</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" style="height: 100px" class="form-control"
+                                            id="postCreateBody" name="postCreateBody"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">UserId</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let post of posts;let i=index">
+                        <th scope="row">{{ i }}</th>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.userId }}</td>
+                        <td><a [href]="'posts/'+post.id">{{ post.title }}</a></td>
+                        <td>{{ post.body }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                data-bs-target="#editPost">
+                                <i class="bi bi-pencil-square">Edit</i>
+                            </button>
+                            <div class="modal fade" id="editPost" data-bs-backdrop="static" data-bs-keyboard="false"
+                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="" (submit)="editPost($event,post.id)">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Post</h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row mb-3">
+                                                    <label for="postUpdateTitle"
+                                                        class="col-sm-2 col-form-label">Title</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="postUpdateTitle"
+                                                            name="postUpdateTitle">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="postUpdateBody"
+                                                        class="col-sm-2 col-form-label">Body</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea type="text" style="height: 100px" class="form-control"
+                                                            id="postUpdateBody" name="postUpdateBody"> </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="reset" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Kirim</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger" (click)="deletePost(post.id)">
+                                <i class="bi bi-trash"> Delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<section class="d-flex flex-column ">
+    <span>
+    </span> <br>
+    <div class="card shadow-sm my-3">
+        <h3 class="card-header p-3">Album Made By {{ user.username }}</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">UserId</th>
+                        <th scope="col">Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let album of albums;let i=index">
+                        <th scope="row">{{ i }}</th>
+                        <td>{{ album.id }}</td>
+                        <td>{{ album.userId }}</td>
+                        <td><a [href]="'albums/'+album.id">{{ album.title }}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
