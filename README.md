@@ -6,6 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. install dependency `npm install`
 2. serve in local server by `ng serve` and it will be running by default to http://localhost:4200/
 
+## Production URI
+https://6629e6ed7dc47447d75fd93d--glittery-bunny-ed2e1a.netlify.app/
+
 ## Pages and Url
 - https://localhost:4200/ -> Show List of All User
 - https://localhost:4200/users/[id] -> Show Detail User, List of Post by user and List of Album by user
