@@ -60,6 +60,7 @@ export class UserComponent implements OnInit {
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.posts.push(post)
           }
         }
       })
@@ -81,6 +82,12 @@ export class UserComponent implements OnInit {
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.posts.forEach((value, index) => {
+              if (value.id == post.id) {
+                this.posts[index].title = post.title
+                this.posts[index].body = post.body
+              }
+            })
           }
         }
       })
@@ -92,6 +99,7 @@ export class UserComponent implements OnInit {
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.posts = this.posts.filter(value => value.id != id)
           }
         }
       })

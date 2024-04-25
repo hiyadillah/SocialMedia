@@ -20,6 +20,7 @@ import { PostService } from '../../service/post.service';
 export class PostComponent implements OnInit {
   post = {} as Post
   comments: Commentary[] = []
+  commentForm = {} as Commentary
   constructor(private route: ActivatedRoute,
     private sosmedService: SocialMediaService,
     private postService: PostService,
@@ -53,6 +54,8 @@ export class PostComponent implements OnInit {
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.post.body = post.body
+            this.post.title = post.title
           }
         }
       })
@@ -76,6 +79,7 @@ export class PostComponent implements OnInit {
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.comments.push(comment)
           }
         }
       })
@@ -90,15 +94,22 @@ export class PostComponent implements OnInit {
 
       let comment: Commentary = {
         id: id,
+        postId: 0,
         body: body,
         name: name,
         email: email,
-        postId: 0,
       }
       this.commentService.createComment(comment).subscribe({
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.comments.forEach((value, index) => {
+              if (value.id == comment.id) {
+                this.comments[index].body = comment.body
+                this.comments[index].email = comment.email
+                this.comments[index].name = comment.name
+              }
+            })
           }
         }
       })
@@ -110,6 +121,7 @@ export class PostComponent implements OnInit {
         next: res => {
           if (res.ok) {
             alert("Berhasil")
+            this.comments = this.comments.filter(value => value.id != id)
           }
         }
       })

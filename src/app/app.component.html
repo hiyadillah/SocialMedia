@@ -1,3 +1,24 @@
+<nav class="navbar shadow-sm px-5">
+  <div class="container">
+    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+</nav>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">SocialMedia</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body ">
+    <ul style="list-style-type:none;" class="d-flex flex-column justify-content-start">
+      <li class="btn btn-outline-secondary w-100 d-flex justify-content-start">
+        <a href="" class="p-2 fs-5" style="text-decoration: none;color: black;">Dashboard</a>
+      </li>
+    </ul>
+  </div>
+</div>
 <div class="container">
   <router-outlet />
 </div>

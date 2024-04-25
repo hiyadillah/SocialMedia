@@ -5,6 +5,7 @@ import { UserComponent } from './components/user/user.component';
 import { PostComponent } from './components/post/post.component';
 import { AlbumComponent } from './components/album/album.component';
 import { PhotoComponent } from './components/photo/photo.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: '', component: UsersComponent, providers: [HttpClient] },
@@ -12,4 +13,5 @@ export const routes: Routes = [
     { path: 'posts/:id', component: PostComponent, providers: [HttpClient] },
     { path: 'albums/:id', component: AlbumComponent, providers: [HttpClient] },
     { path: 'photos/:id', component: PhotoComponent, providers: [HttpClient] },
+    { path: '**', component: NotFoundComponent },
 ];
