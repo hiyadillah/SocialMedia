@@ -8,6 +8,7 @@ import { Post } from '../../interfaces/post';
 import { Album } from '../../interfaces/album';
 import { AddressPipe } from '../../pipes/address.pipe';
 import { PostService } from '../../service/post.service';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-user',
@@ -15,30 +16,31 @@ import { PostService } from '../../service/post.service';
   imports: [CommonModule, HttpClientModule, AddressPipe],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
-  providers: [SocialMediaService, PostService],
+  providers: [UserService, PostService],
 })
 export class UserComponent implements OnInit {
   user = {} as User;
   posts: Post[] = [];
   albums: Album[] = [];
-  constructor(private route: ActivatedRoute,
-    private sosmedService: SocialMediaService,
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
     private postService: PostService) { }
   ngOnInit(): void {
     const id: number = this.route.snapshot.params['id']
-    this.sosmedService.getUser(id).subscribe({
+    this.userService.getUser(id).subscribe({
       next: res => {
         console.log(res);
         this.user = res.body!
         console.log(res.body!);
       }
     })
-    this.sosmedService.getUserPost(id).subscribe({
+    this.userService.getUserPost(id).subscribe({
       next: res => {
         this.posts = res.body!
       }
     })
-    this.sosmedService.getUserAlbum(id).subscribe({
+    this.userService.getUserAlbum(id).subscribe({
       next: res => {
         this.albums = res.body!
       }

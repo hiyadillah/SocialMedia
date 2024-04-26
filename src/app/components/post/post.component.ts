@@ -15,24 +15,23 @@ import { PostService } from '../../service/post.service';
   imports: [CommonModule, HttpClientModule],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
-  providers: [SocialMediaService, CommentService, PostService]
+  providers: [CommentService, PostService]
 })
 export class PostComponent implements OnInit {
   post = {} as Post
   comments: Commentary[] = []
   commentForm = {} as Commentary
   constructor(private route: ActivatedRoute,
-    private sosmedService: SocialMediaService,
     private postService: PostService,
     private commentService: CommentService) { }
   ngOnInit(): void {
     const id: number = this.route.snapshot.params['id']
-    this.sosmedService.getPost(id).subscribe({
+    this.postService.getPost(id).subscribe({
       next: res => {
         this.post = res.body!
       }
     })
-    this.sosmedService.getPostComment(id).subscribe({
+    this.postService.getPostComment(id).subscribe({
       next: res => {
         this.comments = res.body!
       }
