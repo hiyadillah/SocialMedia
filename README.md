@@ -8,6 +8,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Production URI
 https://6629e6ed7dc47447d75fd93d--glittery-bunny-ed2e1a.netlify.app/
+new URI with Updated Feature -> https://662df5b5d291c38518ab4766--lively-parfait-6a01dc.netlify.app/
+
 
 ## Pages and Url
 - https://localhost:4200/ -> Show List of All User
